@@ -4,23 +4,22 @@ import edu.unl.cc.succession.model.Printable;
 import edu.unl.cc.succession.model.Successionable;
 
 /**
- * Representa el cálculo de la Serie números Primos hasta Limite N
- * S = 1 + 2 + 3 + 5 + 7 + 11 + ... + N
+ * Representa el cálculo de la Serie números Primos elevado a la potencia inversa del número primo hasta N términos
+ * (S = 1^(1/1) + 3^(1/3) + 5^(1/5) + 7^(1/7) + 11^(1/9) + 13^(1/11)):
  * @author wduck (Wilman Chamba Z.)
  */
 
-public class PrimeNumberCalculatorUpToLimit implements Successionable, Printable {
+public class PrimeNumberWithPowCalculatorWithTerm implements Successionable, Printable {
 
-    private Integer limit;
+    private Integer nTerm;  //limit
     private Integer currentTerm;
     private StringBuilder printableTerms;
 
-
-    public PrimeNumberCalculatorUpToLimit(Integer limit) {
+    public PrimeNumberWithPowCalculatorWithTerm(Integer limit) {
         this(1, limit);
     }
 
-    public PrimeNumberCalculatorUpToLimit(Integer start, Integer limit) {
+    public PrimeNumberWithPowCalculatorWithTerm(Integer start, Integer limit) {
         start = validateLimit(start, "Downn limit");
         setLimit(limit);
         this.currentTerm = nextTerm(start-1).intValue();
@@ -42,28 +41,38 @@ public class PrimeNumberCalculatorUpToLimit implements Successionable, Printable
         }
     }
 
+
     @Override
     public void setLimit(Number limit) {
-        this.limit = validateLimit(limit, "Upper limit");
-    }
-
-
-    @Override
-    public String print() {
-        return this.printableTerms.toString();
+        this.nTerm = validateLimit(limit, "nTerm");
     }
 
     @Override
     public Number calculate() {
-        long result = 0;
-        while (currentTerm <= limit) {
-            this.printableTerms.append(String.valueOf(currentTerm)).append(" + ");
-            result = result + currentTerm;//result += currentTerm;
-            currentTerm = this.nextTerm(currentTerm).intValue();
+        double result = 0;
+        int countTerm = 0;
+        final int numeratorExponent =  1;
+        //int denominatorExponent = currentTerm;
+        int denominatorExponent = 1;
+        while (countTerm < nTerm) {
+
+            this.printableTerms.append(currentTerm).append("^(")
+                    .append(numeratorExponent).append("/").append(denominatorExponent)
+                    .append(") +");
+            result = result + Math.pow(currentTerm, ((double)numeratorExponent)/denominatorExponent);
+            currentTerm = nextTerm(currentTerm).intValue();
+            //denominatorExponent =  currentTerm;
+            denominatorExponent += 2;
+            countTerm++;
         }
         return result;
     }
 
+    /**
+     * Representar el término solo de la base de la serir
+     * @param current
+     * @return
+     */
     @Override
     public Number nextTerm(Number current) {
         current = current.intValue() + 1;
@@ -88,20 +97,11 @@ public class PrimeNumberCalculatorUpToLimit implements Successionable, Printable
         }
         return true;
     }
+
+    @Override
+    public String print() {
+        return this.printableTerms.toString();
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

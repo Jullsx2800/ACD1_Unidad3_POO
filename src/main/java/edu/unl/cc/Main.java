@@ -2,6 +2,7 @@ package edu.unl.cc;
 
 import edu.unl.cc.succession.business.EvenNumberCalculatorUpToLimit;
 import edu.unl.cc.succession.business.PrimeNumberCalculatorUpToLimit;
+import edu.unl.cc.succession.business.PrimeNumberWithPowCalculatorWithTerm;
 import edu.unl.cc.succession.model.Printable;
 import edu.unl.cc.succession.model.Successionable;
 
@@ -40,7 +41,7 @@ public class Main {
                 break;
             }
             case (7): {
-                //serie = new PrimeNumberWithPowCalculatorWithTerm(limit);
+                serie = new PrimeNumberWithPowCalculatorWithTerm(limit);
                 break;
             }
             case (10): {
