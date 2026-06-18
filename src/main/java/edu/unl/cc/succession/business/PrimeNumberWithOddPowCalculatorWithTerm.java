@@ -10,7 +10,7 @@ import edu.unl.cc.succession.model.Successionable;
  */
 public class PrimeNumberWithOddPowCalculatorWithTerm implements Successionable, Printable {
 
-    private Integer nTerm;  // limit (número de términos)
+    private Integer nTerm;  // limit (número de terminos)
     private Integer currentTerm;
     private StringBuilder printableTerms;
 
@@ -21,6 +21,7 @@ public class PrimeNumberWithOddPowCalculatorWithTerm implements Successionable, 
     public PrimeNumberWithOddPowCalculatorWithTerm(Integer start, Integer limit) {
         start = validateLimit(start, "Down limit");
         setLimit(limit);
+        // Inicializa la base buscando el primer primo desde el punto de partida
         this.currentTerm = nextTerm(start - 1).intValue();
         printableTerms = new StringBuilder("S = ");
     }
@@ -47,17 +48,19 @@ public class PrimeNumberWithOddPowCalculatorWithTerm implements Successionable, 
     @Override
     public Number calculate() {
         double result = 0;
-        int countTerm = 0;
+        int countTerm = 0; // Contador interno para rastrear los terminos procesados
         int currentExponent = 1; // El exponente inicial es impar (1)
 
         while (countTerm < nTerm) {
+            // Construye la cadena de texto con el formato "base^exponente"
             this.printableTerms.append(currentTerm).append("^").append(currentExponent).append(" + ");
+            // Calcula la potencia de la base actual y la acumula en el resultado
             result = result + Math.pow(currentTerm, currentExponent);
 
             // Generar el siguiente primo de la base y el siguiente número impar del exponente
             currentTerm = nextTerm(currentTerm).intValue();
             currentExponent += 2;
-            countTerm++; // Incrementar los términos ejecutados
+            countTerm++; // Incrementar los terminos ejecutados
         }
         return result;
     }
@@ -66,6 +69,7 @@ public class PrimeNumberWithOddPowCalculatorWithTerm implements Successionable, 
     public Number nextTerm(Number current) {
         current = current.intValue() + 1;
         boolean isPrime = false;
+        // Evalua los siguientes numeros enteros hasta encontrar secuencialmente el proximo primo
         while (!isPrime) {
             isPrime = isPrime(current.intValue());
             if (!isPrime) {
@@ -79,6 +83,7 @@ public class PrimeNumberWithOddPowCalculatorWithTerm implements Successionable, 
         if (number < 1) {
             return false;
         }
+        // Determina si el número es primo comprobando si tiene divisores exactos menores a el
         for (int i = 2; i < number; i++) {
             if (number % i == 0) {
                 return false;

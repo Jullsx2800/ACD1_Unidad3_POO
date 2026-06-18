@@ -21,6 +21,7 @@ public class PrimeNumberWithEvenPowCalculatorUpToLimit implements Successionable
     public PrimeNumberWithEvenPowCalculatorUpToLimit(Integer start, Integer limit) {
         start = validateLimit(start, "Down limit");
         setLimit(limit);
+        // Inicializa la base buscando el primer primo desde el punto de partida
         this.currentTerm = nextTerm(start - 1).intValue();
         printableTerms = new StringBuilder("S = ");
     }
@@ -47,13 +48,16 @@ public class PrimeNumberWithEvenPowCalculatorUpToLimit implements Successionable
     @Override
     public Number calculate() {
         double result = 0;
-        int currentExponent = 2;
+        int currentExponent = 2; // El exponente inicia con el primer numero par (2)
 
+        // Itera mientras el número primo base no supere el límite establecido
         while (this.currentTerm <= this.limit) {
+            // Construye la cadena de texto con el formato "base^exponente"
             this.printableTerms.append(this.currentTerm).append("^").append(currentExponent).append(" + ");
+            // Calcula la potencia de la base actual y la acumula en el resultado
             result = result + Math.pow(this.currentTerm, currentExponent);
 
-            // Generar el siguiente primo de la base y el siguiente número par del exponente
+            // Incrementa el exponente de 2 en 2 y genera el siguiente número primo
             this.currentTerm = this.nextTerm(this.currentTerm).intValue();
             currentExponent += 2;
         }
@@ -64,6 +68,7 @@ public class PrimeNumberWithEvenPowCalculatorUpToLimit implements Successionable
     public Number nextTerm(Number current) {
         current = current.intValue() + 1;
         boolean isPrime = false;
+        // Evalua los siguientes numeros enteros hasta encontrar secuencialmente el proximo primo
         while (!isPrime) {
             isPrime = isPrime(current.intValue());
             if (!isPrime) {
@@ -77,6 +82,7 @@ public class PrimeNumberWithEvenPowCalculatorUpToLimit implements Successionable
         if (number < 1) {
             return false;
         }
+        // Determina si el numero es primo comprobando si tiene divisores exactos menores a el
         for (int i = 2; i < number; i++) {
             if (number % i == 0) {
                 return false;
