@@ -6,7 +6,7 @@ import edu.unl.cc.succession.model.Successionable;
 /**
  * Representa el cálculo de la Serie números Primos hasta Limite N
  * S = 1 + 2 + 3 + 5 + 7 + 11 + ... + N
- * @author wduck (Wilman Chamba Z.)
+ * @author Julian Merino, Roy Gordillo, Pilar Naranjo, Axel Jimenez, Elian Jimenez
  */
 
 public class PrimeNumberCalculatorUpToLimit implements Successionable, Printable {

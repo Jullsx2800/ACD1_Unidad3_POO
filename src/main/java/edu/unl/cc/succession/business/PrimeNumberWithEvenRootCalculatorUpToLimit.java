@@ -6,6 +6,7 @@ import edu.unl.cc.succession.model.Successionable;
 /**
  * Representa el cálculo de la Serie de primos elevados a la raiz de numeros pares hasta un limite
  * S = 1^(1/2) + 3^(1/4) + 5^(1/6) + 7^(1/8) + 11^(1/10) + 13^(1/12) ... + N
+ * @authors Elian Jimenez, Julian Merino, Pilar Naranjo, Roy Gordillo, Axel Jimenez
  */
 public class PrimeNumberWithEvenRootCalculatorUpToLimit implements Successionable, Printable {
 

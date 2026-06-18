@@ -6,7 +6,7 @@ import edu.unl.cc.succession.model.Successionable;
 /**
  * Representa la serie de numeros pares hasta un limite
  * S = 2 + 4 + 6 + 8 + ... N =
- * @author wduck
+ * @author Julian Merino, Roy Gordillo, Pilar Naranjo, Axel Jimenez, Elian Jimenez
  */
 public class EvenNumberCalculatorUpToLimit implements Successionable, Printable {
 
